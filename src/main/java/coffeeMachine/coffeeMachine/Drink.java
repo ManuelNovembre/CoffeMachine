@@ -1,5 +1,9 @@
 package coffeeMachine.coffeeMachine;
 
+/**
+ * @author maru
+ *
+ */
 public class Drink {
 	private Type type;
 	private Sugar sugar;

@@ -1,5 +1,9 @@
 package coffeeMachine.coffeeMachine;
 
+/**
+ * @author maru
+ *
+ */
 public enum Type {
 	TEA(1, "T", "tea", 0.4),
 	CHOCOLATE(2, "H", "chocolate", 0.5),
@@ -37,6 +41,10 @@ public enum Type {
 		return price;
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	public static Type getTypeFromId(String id) {
 		Type type = null;
 		if (TEA.libelle.equals(id)) {

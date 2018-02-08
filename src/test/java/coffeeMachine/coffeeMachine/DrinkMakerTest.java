@@ -4,6 +4,10 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
+/**
+ * @author maru
+ *
+ */
 public class DrinkMakerTest extends TestCase {
 
 	static DrinkMaker sut = new DrinkMaker();
@@ -165,11 +169,11 @@ public class DrinkMakerTest extends TestCase {
 		 command = "O:1:0.6";
 		 result = sut.MakeDrink(command);
 		
-		 result = sut.getData().toString();
+		 result = sut.displayData();
 		 
 		String expected = "Data [nbTea=" + 2 + ", nbCoffee=" + 0
 				+ ", nbChocolate=" + 0 + ", nbOrange=" + 1
-				+ ", gain=" + 1.4 + "]";
+				+ ", gain=" + 1.4 + "]\n";
 		
 		assertEquals(expected, result);
 	}

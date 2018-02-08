@@ -4,6 +4,10 @@ import java.text.DecimalFormat;
 
 import coffeeMachine.coffeeMachine.Drink.Sugar;
 
+/**
+ * @author maru
+ *
+ */
 public class DrinkMaker {
 	private Drink drink;
 	private Data data;
@@ -98,7 +102,15 @@ public class DrinkMaker {
 		System.out.print(this.toString());
 		return this.toString();
 	}
-
+	
+	/**
+	 * @return
+	 */
+	public String displayData(){
+		System.out.print(data.toString());
+		return data.toString();
+	}
+	
 	public Drink getDrink() {
 		return drink;
 	}

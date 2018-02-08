@@ -1,5 +1,9 @@
 package coffeeMachine.coffeeMachine;
 
+/**
+ * @author maru
+ *
+ */
 public class Data {
 	private int nbTea;
 	private int nbCoffee;
@@ -16,6 +20,9 @@ public class Data {
 		this.gain = 0;
 	}
 	
+	/**
+	 * @param type
+	 */
 	public void update(Type type) {
 		switch(type.getId()){
 		case 1 :
@@ -38,7 +45,7 @@ public class Data {
 	public String toString() {
 		return "Data [nbTea=" + nbTea + ", nbCoffee=" + nbCoffee
 				+ ", nbChocolate=" + nbChocolate + ", nbOrange=" + nbOrange
-				+ ", gain=" + gain + "]";
+				+ ", gain=" + gain + "]\n";
 	}
 	
 	public int getNbTea() {
