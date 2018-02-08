@@ -3,13 +3,14 @@ package coffeeMachine.coffeeMachine;
 import java.text.DecimalFormat;
 
 import coffeeMachine.coffeeMachine.Drink.Sugar;
-import coffeeMachine.coffeeMachine.Drink.Type;
 
 public class DrinkMaker {
 	private Drink drink;
+	private Data data;
 
 	public DrinkMaker() {
 		super();
+		data = new Data();
 	}
 
 	@Override
@@ -92,6 +93,7 @@ public class DrinkMaker {
 			
 			//Create drink
 			this.drink = new Drink(type, sugar, xtraHot);
+			this.getData().update(type);
 		}
 		System.out.print(this.toString());
 		return this.toString();
@@ -103,5 +105,9 @@ public class DrinkMaker {
 
 	public void setDrink(Drink drink) {
 		this.drink = drink;
+	}
+
+	public Data getData() {
+		return data;
 	}
 }

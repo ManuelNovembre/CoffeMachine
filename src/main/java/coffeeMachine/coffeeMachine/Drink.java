@@ -37,51 +37,7 @@ public class Drink {
 			return sugar;		
 		}
 	}
-	public static enum Type {
-		TEA("T", "tea", 0.4),
-		CHOCOLATE("H", "chocolate", 0.5),
-		COFFEE("C", "coffee", 0.6),
-		ORANGE("O", "orange juice", 0.6);
-
-		String id;
-
-		String label;
-		
-		double price;
-
-		Type(String id, String label, double price) {
-			this.id = id;
-			this.label = label;
-			this.price = price;
-		}
-
-		public String getId() {
-			return id;
-		}
-
-		public String getLabel() {
-			return label;
-		}
-
-		public double getPrice() {
-			return price;
-		}
-
-		public static Type getTypeFromId(String id) {
-			Type type = null;
-			if (TEA.id.equals(id)) {
-				type = TEA;
-			} else if (CHOCOLATE.id.equals(id)) {
-				type = CHOCOLATE;
-			} else if (COFFEE.id.equals(id)) {
-				type = COFFEE;
-			} else if(ORANGE.id.equals(id)){
-				type = ORANGE;
-			}
-			return type;
-		}
-	}
-
+	
 	//constructor
 	public Drink(Type type, Sugar sugar, boolean extraHot) {
 		super();

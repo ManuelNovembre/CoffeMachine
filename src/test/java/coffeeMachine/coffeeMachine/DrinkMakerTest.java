@@ -1,13 +1,13 @@
 package coffeeMachine.coffeeMachine;
 
-import org.junit.Test;
-
 import junit.framework.TestCase;
+
+import org.junit.Test;
 
 public class DrinkMakerTest extends TestCase {
 
-	DrinkMaker sut = new DrinkMaker();
-		
+	static DrinkMaker sut = new DrinkMaker();
+	
 	@Test
 	public void testSendMessage() {
 		//Given a command with a message to foward
@@ -150,6 +150,27 @@ public class DrinkMakerTest extends TestCase {
 		
 		//Make sure it returns the right command
 		String expected = "Drink maker will make an extra hot tea with one sugar and a stick\n";
+		assertEquals(expected, result);
+	}
+	
+	@Test
+	public void testGetData (){
+		DrinkMaker sut = new DrinkMaker();
+		String command = "T:1:0.4";
+		String result = sut.MakeDrink(command);
+		
+		 command = "Th:1:0.4";
+		 result = sut.MakeDrink(command);
+		
+		 command = "O:1:0.6";
+		 result = sut.MakeDrink(command);
+		
+		 result = sut.getData().toString();
+		 
+		String expected = "Data [nbTea=" + 2 + ", nbCoffee=" + 0
+				+ ", nbChocolate=" + 0 + ", nbOrange=" + 1
+				+ ", gain=" + 1.4 + "]";
+		
 		assertEquals(expected, result);
 	}
 	
