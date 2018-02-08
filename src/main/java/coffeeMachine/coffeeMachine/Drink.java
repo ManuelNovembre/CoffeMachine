@@ -6,7 +6,7 @@ public class Drink {
 
 	public static enum Type {
 		TEA("T", "tea"),
-		CHOCOLATE("H", "chocolate "),
+		CHOCOLATE("H", "chocolate"),
 		COFFEE("C", "coffee");
 
 		String id;
