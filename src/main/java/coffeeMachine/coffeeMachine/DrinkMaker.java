@@ -19,7 +19,7 @@ public class DrinkMaker {
 	/**
 	 * Prepare a drink
 	 * @param command
-	 * "<type of drink> : <number of sugar>"
+	 * "<type of drink> : <number of sugar> : money insert by the customer"	 *
 	 * @return
 	 */
 	public String MakeDrink(String command) {
@@ -27,7 +27,7 @@ public class DrinkMaker {
 		
 		//if user want to forwards a message to the coffee machine
 		if (details[0].equals("M")) {
-			StringBuilder sb = new StringBuilder("Message sent : ").append(details[1]);
+			StringBuilder sb = new StringBuilder("Message sent : ").append(details[1]).append("\n");
 			return sb.toString();
 		} else {
 			Type type = Type.getHeaderFromId(details[0]);

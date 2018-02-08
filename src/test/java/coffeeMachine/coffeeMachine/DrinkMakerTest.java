@@ -16,7 +16,7 @@ public class DrinkMakerTest extends TestCase {
 		String result = sut.MakeDrink(command);
 			
 		//Make sure it returns the message to forward 
-		String expected = "Message sent : message-content";
+		String expected = "Message sent : message-content\n";
 		assertEquals(result, expected);
 	}
 
@@ -29,7 +29,7 @@ public class DrinkMakerTest extends TestCase {
 		String result = sut.MakeDrink(command);
 		
 		//Make sure it returns the right command
-		String expected = "Drink maker makes 1 tea with 1 sugar and a stick";
+		String expected = "Drink maker makes 1 tea with 1 sugar and a stick\n";
 		assertEquals(result, expected);
 	}
 	
@@ -42,7 +42,7 @@ public class DrinkMakerTest extends TestCase {
 		String result = sut.MakeDrink(command);
 		
 		//Make sure it returns the right command
-		String expected = "Drink maker makes 1 tea with no sugar - and therefore no stick";
+		String expected = "Drink maker makes 1 tea with no sugar - and therefore no stick\n";
 		assertEquals(result, expected);
 	}
 	
@@ -55,7 +55,7 @@ public class DrinkMakerTest extends TestCase {
 		String result = sut.MakeDrink(command);
 		
 		//Make sure it returns the right command
-		String expected = "Drink maker makes 1 coffee with no sugar - and therefore no stick";
+		String expected = "Drink maker makes 1 coffee with no sugar - and therefore no stick\n";
 		assertEquals(result, expected);
 	}
 
@@ -68,7 +68,21 @@ public class DrinkMakerTest extends TestCase {
 		String result = sut.MakeDrink(command);
 		
 		//Make sure it returns the right command
-		String expected = "Drink maker makes 1 chocolate with no sugar - and therefore no stick";
+		String expected = "Drink maker makes 1 chocolate with no sugar - and therefore no stick\n";
 		assertEquals(result, expected);
 	}
+	
+	@Test
+	public void testMakeTeaWithEnoughMoney() {
+		//Given a tea command with 1 sugar
+		String command = "T:1:0,4";
+		
+		//When calling MakeDrink
+		String result = sut.MakeDrink(command);
+		
+		//Make sure it returns the right command
+		String expected = "Drink maker makes 1 tea with 1 sugar and a stick\n";
+		assertEquals(result, expected);
+	}
+	
 }

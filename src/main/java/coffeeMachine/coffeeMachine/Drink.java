@@ -12,6 +12,8 @@ public class Drink {
 		String id;
 
 		String label;
+		
+		double price;
 
 		Type(String id, String label) {
 			this.id = id;
@@ -24,6 +26,10 @@ public class Drink {
 
 		public String getLabel() {
 			return label;
+		}
+		
+		public double getPrice() {
+			return price;
 		}
 
 		public static Type getHeaderFromId(String id) {
