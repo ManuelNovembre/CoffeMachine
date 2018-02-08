@@ -5,17 +5,20 @@ public class Drink {
 	private int sugar;
 
 	public static enum Type {
-		TEA("T", "tea"),
-		CHOCOLATE("H", "chocolate"),
-		COFFEE("C", "coffee");
+		TEA("T", "tea", 0.4),
+		CHOCOLATE("H", "chocolate", 0.5),
+		COFFEE("C", "coffee", 0.6);
 
 		String id;
 
 		String label;
+		
+		double price;
 
-		Type(String id, String label) {
+		Type(String id, String label, double price) {
 			this.id = id;
 			this.label = label;
+			this.price = price;
 		}
 
 		public String getId() {
@@ -24,6 +27,10 @@ public class Drink {
 
 		public String getLabel() {
 			return label;
+		}
+
+		public double getPrice() {
+			return price;
 		}
 
 		public static Type getHeaderFromId(String id) {

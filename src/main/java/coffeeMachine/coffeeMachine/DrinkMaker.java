@@ -1,5 +1,7 @@
 package coffeeMachine.coffeeMachine;
 
+import java.text.DecimalFormat;
+
 import coffeeMachine.coffeeMachine.Drink.Type;
 
 public class DrinkMaker {
@@ -24,13 +26,26 @@ public class DrinkMaker {
 	 */
 	public String MakeDrink(String command) {
 		String[] details = command.split(":");
-		
+		String _type = details[0];
+		StringBuilder response;
 		//if user want to forwards a message to the coffee machine
-		if (details[0].equals("M")) {
-			StringBuilder sb = new StringBuilder("Message sent : ").append(details[1]);
-			return sb.toString();
+		if (_type.equals("M")) {
+			response = new StringBuilder("Message sent : ").append(details[1]).append("\n");
+			return response.toString();
 		} else {
-			Type type = Type.getHeaderFromId(details[0]);
+			Type type = Type.getHeaderFromId(_type);
+			double money = Double.parseDouble( details[2].replace(",","."));  
+			double moneyNeeded = type.getPrice();
+			
+			// Check if the customer put enough money
+			if(money < moneyNeeded){
+				double moneyMissing = moneyNeeded - money;
+				DecimalFormat df = new DecimalFormat("#.##");
+				response = new StringBuilder("there is not enough money put : ").append(df.format(moneyMissing)).append(" euros.\n");
+				System.out.print(response.toString());
+				return response.toString();
+			}
+			
 			int sugar;
 			//if number sugar is not defined in the command put it to 0
 			if(details.length <= 1){
@@ -41,7 +56,7 @@ public class DrinkMaker {
 				// Check if sugar is between  and 2
 				if (sugar < 0 || sugar>2){
 					sugar = 0;
-					System.out.print("The number of sugar must be between 0 and 2");
+					System.out.print("The number of sugar must be between 0 and 2.\n");
 				}
 			}
 			
