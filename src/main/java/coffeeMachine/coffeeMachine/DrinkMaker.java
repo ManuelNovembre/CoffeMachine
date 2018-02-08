@@ -2,11 +2,11 @@ package coffeeMachine.coffeeMachine;
 
 import java.text.DecimalFormat;
 
+import coffeeMachine.coffeeMachine.Drink.Sugar;
 import coffeeMachine.coffeeMachine.Drink.Type;
 
 public class DrinkMaker {
 	private Drink drink;
-	private int nbDrink;
 
 	public DrinkMaker() {
 		super();
@@ -14,7 +14,17 @@ public class DrinkMaker {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder("Drink maker makes ").append(nbDrink).append(" ").append(drink.toString()).append("\n");
+		StringBuilder sb;
+		Type type = this.drink.getType();
+		
+		if(type.equals(Type.ORANGE)){
+			sb = new StringBuilder("Drink maker will make one ").append(drink.toString()).append("\n");
+		} else if (drink.isExtraHot()){
+			sb = new StringBuilder("Drink maker will make an extra hot").append(" ").append(drink.toString()).append("\n");
+		}else{
+			sb = new StringBuilder("Drink maker will make a ").append(drink.toString()).append("\n");
+		}
+		
 		return sb.toString();
 	}
 	
@@ -26,14 +36,32 @@ public class DrinkMaker {
 	 */
 	public String MakeDrink(String command) {
 		String[] details = command.split(":");
-		String _type = details[0];
-		StringBuilder response;
+		StringBuilder response = null;
+		
+		if(details.length <= 1){
+			response = new StringBuilder("Error with the command.\n");
+			return response.toString();
+		}
+		
+		boolean xtraHot = false;
+		String _type;
+		if(details[0].contains("h") && details[0].length() == 2){
+			xtraHot = true;
+			_type = details[0].substring(0, 1);
+		}else{
+			_type = details[0];
+		}
 		//if user want to forwards a message to the coffee machine
 		if (_type.equals("M")) {
 			response = new StringBuilder("Message sent : ").append(details[1]).append("\n");
 			return response.toString();
 		} else {
-			Type type = Type.getHeaderFromId(_type);
+			Type type = Type.getTypeFromId(_type);
+			if(type == null){
+				response = new StringBuilder("Wrong drink type has been choosed.\n");
+				return response.toString();
+			}
+			
 			double money = Double.parseDouble( details[2].replace(",","."));  
 			double moneyNeeded = type.getPrice();
 			
@@ -46,23 +74,24 @@ public class DrinkMaker {
 				return response.toString();
 			}
 			
-			int sugar;
+			int nbSugar;
+			Sugar sugar = null;
 			//if number sugar is not defined in the command put it to 0
-			if(details.length <= 1){
-				sugar = 0;
+			if(details.length <= 1 || details[1].isEmpty()){
+				nbSugar = 0;
 			}else{
-				sugar = Integer.valueOf(details[1]);
+				nbSugar = Integer.valueOf(details[1]);
 				
 				// Check if sugar is between  and 2
-				if (sugar < 0 || sugar>2){
-					sugar = 0;
+				if (nbSugar < 0 || nbSugar>2){
+					nbSugar = 0;
 					System.out.print("The number of sugar must be between 0 and 2.\n");
 				}
 			}
+			sugar = Sugar.getSugarFromNumber(nbSugar);
 			
 			//Create drink
-			this.drink = new Drink(type, sugar);
-			this.nbDrink = 1;
+			this.drink = new Drink(type, sugar, xtraHot);
 		}
 		System.out.print(this.toString());
 		return this.toString();
@@ -75,13 +104,4 @@ public class DrinkMaker {
 	public void setDrink(Drink drink) {
 		this.drink = drink;
 	}
-
-	public int getNbDrink() {
-		return nbDrink;
-	}
-
-	public void setNbDrink(int nbDrink) {
-		this.nbDrink = nbDrink;
-	}
-	
 }
